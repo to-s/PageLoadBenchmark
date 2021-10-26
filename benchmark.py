@@ -15,7 +15,7 @@ options = Options()
 options.headless = True
 
 def page_has_loaded(self):
-    page_state = self.execute_script('return document.readyState,')
+    page_state = self.execute_script('return document.readyState;')
     if page_state == 'complete':
         return True
     return False
