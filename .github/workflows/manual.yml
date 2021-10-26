@@ -43,7 +43,7 @@ jobs:
         if: always()
         run: sudo killall openvpn
       - name: prepare logs
-        run: sudo chmod +r *.log
+        run: sudo chmod +r openvpn.log
       - name: save logs
         if: always()
         uses: actions/upload-artifact@v2
