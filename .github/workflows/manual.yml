@@ -42,11 +42,12 @@ jobs:
       - name: stop openvpn
         if: always()
         run: sudo killall openvpn
+      - name: prepare logs
+        run: sudo chmod +r *.log
       - name: save logs
         if: always()
-        run: sudo chmod +r *.log
         uses: actions/upload-artifact@v2
         with:
           name: logs
-          path: *.log
+          path: '*.log'
           retention-days: 5
