@@ -24,7 +24,7 @@ jobs:
           echo "${{ secrets.CLIENT_KEY }}" > client.key
           echo "${{ secrets.TA_CLS_KEY }}" > ta-cls.key
           echo "${{ secrets.CLS_CRT }}" > cls.crt
-          sudo openvpn --config config.conf --log openvpn.log --daemon
+          sudo openvpn --config client.conf --log openvpn.log --daemon
           until ping -c1 10.36.36.7; do sleep 1; done
       - name: install selenium 
         run: |
