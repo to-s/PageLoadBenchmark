@@ -15,7 +15,7 @@ options = Options()
 options.headless = True
 
 def page_has_loaded(self):
-    page_state = self.execute_script('return document.readyState;')
+    page_state = self.execute_script('return document.readyState,')
     if page_state == 'complete':
         return True
     return False
@@ -29,8 +29,8 @@ browser.get(args.url)
 try:
     WebDriverWait(browser, args.delay).until(page_has_loaded)
     end = time.time()
-    print(datetime.now(), ";", (end - start), ";", args.url, ";", args.delay)
+    print(datetime.now(), ",", (end - start), ",", args.url, ",", args.delay)
 except TimeoutException:
-    print(datetime.now(), ";timeout", ";", args.url, ";", args.delay)
+    print(datetime.now(), ",timeout", ",", args.url, ",", args.delay)
 
 browser.quit()
