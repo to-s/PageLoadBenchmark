@@ -1,1 +1,6 @@
 /geckodriver.log
+/client.conf
+/client.crt
+/client.key
+/ta-cls.key
+/cls.crt

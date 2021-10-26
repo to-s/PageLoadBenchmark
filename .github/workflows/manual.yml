@@ -14,6 +14,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: install openvpn
+        run: sudo apt install openvpn -y
+      - name: start openvpn
+        timeout-minutes: 5
+        run: |
+          echo "${{ secrets.CLIENT_CONF }}" > client.conf
+          echo "${{ secrets.CLIENT_CRT }}" > client.crt
+          echo "${{ secrets.CLIENT_KEY }}" > client.key
+          echo "${{ secrets.TA_CLS_KEY }}" > ta-cls.key
+          echo "${{ secrets.CLS_CRT }}" > cls.crt
+          sudo openvpn --config config.conf --log openvpn.log --daemon
+          until ping -c1 10.36.36.7; do sleep 1; done
       - name: install selenium 
         run: |
           pip install selenium
@@ -27,3 +39,14 @@ jobs:
           git add .
           git commit -m "Added new benchmark for ${{ github.event.inputs.url }}"
           git push
+      - name: stop openvpn
+        if: always()
+        run: sudo killall openvpn
+      - name: save logs
+        if: always()
+        run: sudo chmod +r *.log
+        uses: actions/upload-artifact@v2
+        with:
+          name: logs
+          path: *.log
+          retention-days: 5
