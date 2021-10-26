@@ -1,6 +1,8 @@
-name: manual trigger
+name: benchmark
 
 on:
+  schedule:
+    - cron:  '*/10 * * * *'
   workflow_dispatch:
     inputs:
       url:
@@ -29,9 +31,15 @@ jobs:
       - name: install selenium 
         run: |
           pip install selenium
-      - name: benchmark
+      - name: manual benchmark
+        if: github.event.inputs.url != ''
         run: |
           python benchmark.py --url ${{ github.event.inputs.url }} >> history.csv
+      - name: scheduled benchmark
+        if: github.event.inputs.url == ''
+        run: |
+          python benchmark.py --url https://10.36.36.7:10512/dist/index.html >> history.csv
+          python benchmark.py --url https://eniserv.de/pliezhausen/dist/index.html >> history.csv
       - name: commit result
         run: |
           git config user.name github-actions
