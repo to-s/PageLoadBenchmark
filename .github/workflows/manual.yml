@@ -1,0 +1,19 @@
+name: manual trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to load'
+        default: 'https://enisyst.de'
+        required: true
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: benchmark
+        run: |
+          python benchmark.py --url ${{ github.event.inputs.url }}
