@@ -1,3 +1,3 @@
 # PageLoadBenchmark
-Results are store in history.csv int the following format:
+Results are store in history.csv in the following format:
 `timestamp(utc);url;url;delay`
