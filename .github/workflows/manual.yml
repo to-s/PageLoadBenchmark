@@ -19,4 +19,11 @@ jobs:
           pip install selenium
       - name: benchmark
         run: |
-          python benchmark.py --url ${{ github.event.inputs.url }}
+          python benchmark.py --url ${{ github.event.inputs.url }} >> history.csv
+      - name: commit result
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Added new benchmark for ${{ github.event.inputs.url }}"
+          git push
