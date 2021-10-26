@@ -51,6 +51,7 @@ jobs:
         if: always()
         run: sudo killall openvpn
       - name: prepare logs
+        if: always()
         run: sudo chmod 777 openvpn.log
       - name: save logs
         if: always()
