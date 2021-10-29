@@ -318,3 +318,5 @@ timestamp(utc),loadtime[s],url,delay[s]
 2021-10-29 04:00:23.403742 , 7.171430587768555 , https://eniserv.de/pliezhausen/dist/index.html , 200
 2021-10-29 04:32:54.711640 , 106.29392981529236 , https://10.36.36.7:10512/dist/index.html , 200
 2021-10-29 04:33:03.342384 , 5.939524412155151 , https://eniserv.de/pliezhausen/dist/index.html , 200
+2021-10-29 04:57:52.436646 , 103.10489296913147 , https://10.36.36.7:10512/dist/index.html , 200
+2021-10-29 04:57:58.722589 , 3.484668731689453 , https://eniserv.de/pliezhausen/dist/index.html , 200
