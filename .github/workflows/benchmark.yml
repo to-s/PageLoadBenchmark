@@ -35,10 +35,13 @@ jobs:
         if: github.event.inputs.url != ''
         run: |
           python benchmark.py --url ${{ github.event.inputs.url }} >> history.csv
-      - name: scheduled benchmark
+      - name: scheduled benchmark 10.36.36.7
         if: github.event.inputs.url == ''
         run: |
           python benchmark.py --url https://10.36.36.7:10512/dist/index.html >> history.csv
+      - name: scheduled benchmark pliezhausen
+        if: (github.event.inputs.url == '') && (always())
+        run: |
           python benchmark.py --url https://eniserv.de/pliezhausen/dist/index.html >> history.csv
       - name: commit result
         run: |
